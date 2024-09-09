@@ -53,3 +53,9 @@ select{
   text-align: center;
   font-size: xx-large;
 }
+input[type="button"]{
+  background-color: green;
+  width: 90%;
+  border-radius: 5%;
+
+}
