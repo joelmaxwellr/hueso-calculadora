@@ -123,6 +123,7 @@ function App() {
     }
     setSubTotal(resultadoCal)
   }
+  
   const calcularBanner = () => {
     var resultadoCal = (ancho * alto) * cantidad
     if (resultadoCal <= 1011) {
