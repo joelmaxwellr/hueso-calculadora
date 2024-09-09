@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+
+input{
+  width: 90%;
+  margin: 0.1em;
+  text-align: center;
+  font-size: xx-large;
+}
+select{
+  width: 80%;
+  margin: 0.1em;
+  text-align: center;
+  font-size: xx-large;
+}

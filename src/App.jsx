@@ -115,13 +115,6 @@ function App() {
 
   return (
     <>
-      <label htmlFor="">An</label>
-      <input type="number" name="" id="" onChange={handlerAncho} />
-      <label htmlFor="">Al</label>
-      <input type="number" name="" id="" onChange={handlerAlto} />
-      <label htmlFor="">Cantidad</label>
-      <input type="number" name="" id="" defaultValue={cantidad} onChange={handlerCantidad} />
-
       <select name="" id="" onChange={handlerTipoImpresion}>
         <option value="DTF">DTF</option>
         <option value="Sublimación">Sublimación</option>
@@ -129,25 +122,51 @@ function App() {
         <option value="ImpresionDirecta">Impresion Directa</option>
         <option value="Acrílico">Acrílico</option>
       </select>
+      <div>
+        <div>
+
+          <label htmlFor="">Ancho</label>
+        </div>
+        <input type="number" name="" id="" onChange={handlerAncho} />
+
+      </div>
+      <div>
+        <div>
+
+          <label htmlFor="">Alto</label>
+        </div>
+        <input type="number" name="" id="" onChange={handlerAlto} />
+        <div>
+
+          <label htmlFor="">Cantidad</label>
+        </div>
+      </div>
+      <input type="number" name="" id="" defaultValue={cantidad} onChange={handlerCantidad} />
+
+      {tipoImpresion == "Acrílico" ?
+        <div>
+          <select name="" id="" >
+            <option value="Transparente">Transparente</option>
+            <option value="Colores">Colores</option>
+            <option value="Dorado">Dorado</option>
+          </select>
 
 
-      <select name="" id="" >
-        <option value="Transparente">Transparente</option>
-        <option value="Colores">Colores</option>
-        <option value="Dorado">Dorado</option>
-      </select>
+          <select name="" id="" >
+            <option value="3mn">3mm</option>
+            <option value="4.5mm">4.5mm</option>
+            <option value="6mm">6mm</option>
+          </select>
+        </div> : undefined
 
-
-      <select name="" id="" >
-        <option value="3mn">3mm</option>
-        <option value="4.5mm">4.5mm</option>
-        <option value="6mm">6mm</option>
-      </select>
-      <input type="button" name="" id="" value="Calcular" onClick={ejecutarOperacion} />
+      }
+      <div>
+        <input type="button" name="" id="" value="Calcular" onClick={ejecutarOperacion} />
+      </div>
       <div>
 
         <h3>
-        {cantidad} {cantidad>1?"veces":"vez"} - {ancho} x {alto} pulgs
+          {cantidad} {cantidad > 1 ? "veces" : "vez"} - {ancho} x {alto} pulgs
         </h3>
 
         <h1>
