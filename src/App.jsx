@@ -116,19 +116,40 @@ function App() {
     setSubTotal(resultadoCal)
 
   }
-  const calcularImpresionDirecta = () => { }
+  const calcularImpresionDirecta = () => { 
+    var resultadoCal = (ancho * alto) * cantidad
+   if (resultadoCal ) {
+      resultadoCal = redondearA5(resultadoCal * 0.8680555555555556)
+    }
+    setSubTotal(resultadoCal)
+  }
+  const calcularBanner = () => {
+    var resultadoCal = (ancho * alto) * cantidad
+    if (resultadoCal <= 1011) {
+      resultadoCal = 250
+    }
+    else if (resultadoCal >= 1011) {
+      resultadoCal = redondearA5(resultadoCal * 0.2430555555555555)
+    }
+    setSubTotal(resultadoCal)
+  }
+  const calcularVinil = () => { }
   const calcularAcrílico = () => {
     var resultadoCal = (ancho * alto) * (colorAcrilico[color] * grosorAcrilico[grosor]) * cantidad
 
     setSubTotal(redondearA5(resultadoCal))
   }
-
+  2304
+  560
+  0.2430555555555556
   const operaciones = {
     DTF: calcularDTF,
     Sublimación: calcularSublimacion,
     UVDTF: calcularUVDTF,
     ImpresionDirecta: calcularImpresionDirecta,
     Acrílico: calcularAcrílico,
+    Banner: calcularBanner,
+    Vinil: calcularBanner
 
   };
 
@@ -164,7 +185,7 @@ function App() {
         <option value="ImpresionDirecta">Impresion Directa</option>
         <option value="Acrílico">Acrílico</option>
         <option value="Banner">Banner</option>
-        <option value="Vinil">Acrílico</option>
+        <option value="Vinil">Vinil</option>
       </select>
       <div>
         <div>
