@@ -136,6 +136,7 @@ function App() {
     else if (resultadoCal<=65 && resultadoCal>=172.8) {
       resultadoCal = 150
     }
+    
     else if (resultadoCal>=173) {
       resultadoCal = redondearA5(resultadoCal * 0.8680555555555556)
     }
