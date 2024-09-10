@@ -116,25 +116,54 @@ function App() {
     setSubTotal(resultadoCal)
 
   }
-  const calcularImpresionDirecta = () => { 
+  const calcularImpresionDirecta = () => {
     var resultadoCal = (ancho * alto) * cantidad
-   if (resultadoCal ) {
+    if (resultadoCal<=1 && resultadoCal>=4) {
+      resultadoCal = resultadoCal *22.5
+    }
+    else if (resultadoCal<=5 && resultadoCal>=9) {
+      resultadoCal = resultadoCal *6.25
+    }
+    else if (resultadoCal<=10 && resultadoCal>=16) {
+      resultadoCal = resultadoCal *3
+    }
+    else if (resultadoCal<=17 && resultadoCal>=25) {
+      resultadoCal = resultadoCal *1.58
+    }
+    else if (resultadoCal<=26 && resultadoCal>=36) {
+      resultadoCal = resultadoCal *1
+    }
+    else if (resultadoCal<=65 && resultadoCal>=172.8) {
+      resultadoCal = 150
+    }
+    else if (resultadoCal>=173) {
       resultadoCal = redondearA5(resultadoCal * 0.8680555555555556)
     }
     setSubTotal(resultadoCal)
   }
-  
+
   const calcularBanner = () => {
-    var resultadoCal = (ancho * alto) * cantidad
-    if (resultadoCal <= 1011) {
-      resultadoCal = 250
+    var resultadoCal = (ancho * alto)
+    if (resultadoCal <= 699) {
+      resultadoCal = 175
     }
-    else if (resultadoCal >= 1011) {
+    else if (resultadoCal >= 700) {
       resultadoCal = redondearA5(resultadoCal * 0.2430555555555555)
     }
-    setSubTotal(resultadoCal)
+    setSubTotal(resultadoCal * cantidad)
   }
-  const calcularVinil = () => { }
+
+  const calcularVinil = () => { 
+    var resultadoCal = (ancho * alto)* cantidad
+    if (resultadoCal <= 699) {
+      resultadoCal = 175
+    }
+    else if (resultadoCal >= 700) {
+      resultadoCal = redondearA5(resultadoCal * 0.2430555555555555)
+    }
+    setSubTotal(resultadoCal)}
+
+
   const calcularAcrílico = () => {
     var resultadoCal = (ancho * alto) * (colorAcrilico[color] * grosorAcrilico[grosor]) * cantidad
 
@@ -150,7 +179,7 @@ function App() {
     ImpresionDirecta: calcularImpresionDirecta,
     Acrílico: calcularAcrílico,
     Banner: calcularBanner,
-    Vinil: calcularBanner
+    Vinil: calcularVinil
 
   };
 
