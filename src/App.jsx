@@ -122,7 +122,7 @@ function App() {
 
   }
   const calcularImpresionDirecta = () => {
-    var resultadoCal = (ancho * alto)
+    var resultadoCal = (ancho * alto)* cantidad
     if (resultadoCal >= 1 && resultadoCal <= 4) {
       resultadoCal = resultadoCal * 22.5
     }
@@ -145,7 +145,7 @@ function App() {
     else if (resultadoCal >= 173) {
       resultadoCal = redondearA5(resultadoCal * 0.8680555555555556)
     }
-    setSubTotal(redondearA5(resultadoCal * cantidad))
+    setSubTotal(redondearA5(resultadoCal ))
   }
 
   const calcularBanner = () => {
