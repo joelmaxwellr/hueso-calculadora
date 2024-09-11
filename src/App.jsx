@@ -12,7 +12,12 @@ function App() {
   const [total, setTotal] = useState(0)
   const [tipoImpresion, setTipoImpresion] = useState("DTF")
 
-
+  const preciosBase = {
+    precioDTF: 400,
+    precioSublimación: 240,
+    precioUVDTF: 720,
+    precioCalandra: 300
+  }
 
   const colorAcrilico = {
     "Transparente": 1.5,
@@ -117,30 +122,30 @@ function App() {
 
   }
   const calcularImpresionDirecta = () => {
-    var resultadoCal = (ancho * alto) * cantidad
-    if (resultadoCal<=1 && resultadoCal>=4) {
-      resultadoCal = resultadoCal *22.5
+    var resultadoCal = (ancho * alto)
+    if (resultadoCal >= 1 && resultadoCal <= 4) {
+      resultadoCal = resultadoCal * 22.5
     }
-    else if (resultadoCal<=5 && resultadoCal>=9) {
-      resultadoCal = resultadoCal *6.25
+    else if (resultadoCal >= 5 && resultadoCal <= 9) {
+      resultadoCal = resultadoCal * 6.25
     }
-    else if (resultadoCal<=10 && resultadoCal>=16) {
-      resultadoCal = resultadoCal *3
+    else if (resultadoCal >= 10 && resultadoCal <= 16) {
+      resultadoCal = resultadoCal * 3
     }
-    else if (resultadoCal<=17 && resultadoCal>=25) {
-      resultadoCal = resultadoCal *1.58
+    else if (resultadoCal >= 17 && resultadoCal <= 25) {
+      resultadoCal = resultadoCal * 1.58
     }
-    else if (resultadoCal<=26 && resultadoCal>=36) {
-      resultadoCal = resultadoCal *1
+    else if (resultadoCal >= 26 && resultadoCal <= 36) {
+      resultadoCal = resultadoCal * 1
     }
-    else if (resultadoCal<=65 && resultadoCal>=172.8) {
+    else if (resultadoCal >= 65 && resultadoCal <= 172.8) {
       resultadoCal = 150
     }
-    
-    else if (resultadoCal>=173) {
+
+    else if (resultadoCal >= 173) {
       resultadoCal = redondearA5(resultadoCal * 0.8680555555555556)
     }
-    setSubTotal(resultadoCal)
+    setSubTotal(redondearA5(resultadoCal * cantidad))
   }
 
   const calcularBanner = () => {
@@ -154,15 +159,16 @@ function App() {
     setSubTotal(resultadoCal * cantidad)
   }
 
-  const calcularVinil = () => { 
-    var resultadoCal = (ancho * alto)* cantidad
+  const calcularVinil = () => {
+    var resultadoCal = (ancho * alto) * cantidad
     if (resultadoCal <= 699) {
       resultadoCal = 175
     }
     else if (resultadoCal >= 700) {
       resultadoCal = redondearA5(resultadoCal * 0.2430555555555555)
     }
-    setSubTotal(resultadoCal)}
+    setSubTotal(resultadoCal)
+  }
 
 
   const calcularAcrílico = () => {
@@ -170,6 +176,25 @@ function App() {
 
     setSubTotal(redondearA5(resultadoCal))
   }
+
+  const calcularCalandra = () => {
+    var resultadoCal = (ancho * alto) * cantidad
+    if (resultadoCal <= 2160) {
+      resultadoCal = 500
+    }
+    else if (resultadoCal >= 2161 && resultadoCal <= 8640) {
+      resultadoCal = (((Math.ceil(resultadoCal * 0.1111111111111111 / 240)) - 1) * 300) + 500
+    }
+    else if (resultadoCal >= 8641 && resultadoCal < 43200) {
+      resultadoCal = redondearA5(resultadoCal * 0.138888888888888)
+    }
+    else if (resultadoCal >= 43200) {
+      resultadoCal = redondearA5(resultadoCal * 0.129629629629629)
+    }
+    setSubTotal(resultadoCal)
+  }
+
+
   2304
   560
   0.2430555555555556
@@ -180,7 +205,8 @@ function App() {
     ImpresionDirecta: calcularImpresionDirecta,
     Acrílico: calcularAcrílico,
     Banner: calcularBanner,
-    Vinil: calcularVinil
+    Vinil: calcularVinil,
+    Calandra: calcularCalandra
 
   };
 
@@ -212,6 +238,7 @@ function App() {
       <select name="" id="" onChange={handlerTipoImpresion}>
         <option value="DTF">DTF</option>
         <option value="Sublimación">Sublimación</option>
+        <option value="Calandra">Calandra</option>
         <option value="UVDTF">UV-DTF</option>
         <option value="ImpresionDirecta">Impresion Directa</option>
         <option value="Acrílico">Acrílico</option>
@@ -265,6 +292,9 @@ function App() {
           {cantidad} {cantidad > 1 ? "veces" : "vez"} - {ancho} x {alto} pulgs
         </h3>
 
+        <h2>
+          RD$ {(subTotal / cantidad).toFixed(2)} unidad
+        </h2>
         <h1>
           RD$ {separator(subTotal)}
         </h1>
