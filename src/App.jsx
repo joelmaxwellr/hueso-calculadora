@@ -122,7 +122,7 @@ function App() {
 
   }
   const calcularImpresionDirecta = () => {
-    var resultadoCal = (ancho * alto)* cantidad
+    var resultadoCal = (ancho * alto) * cantidad
     if (resultadoCal >= 1 && resultadoCal <= 4) {
       resultadoCal = resultadoCal * 22.5
     }
@@ -145,7 +145,7 @@ function App() {
     else if (resultadoCal >= 173) {
       resultadoCal = redondearA5(resultadoCal * 0.8680555555555556)
     }
-    setSubTotal(redondearA5(resultadoCal ))
+    setSubTotal(redondearA5(resultadoCal))
   }
 
   const calcularBanner = () => {
@@ -194,10 +194,34 @@ function App() {
     setSubTotal(resultadoCal)
   }
 
+  const calcularLapiceros = () => {
+    var resultadoCal = cantidad
+    if (resultadoCal >= 1 && resultadoCal <= 10) {
+      resultadoCal = 350
+    }
+    else if (resultadoCal >= 11 && resultadoCal <= 19) {
+      resultadoCal = resultadoCal * 35
+    }
+    else if (resultadoCal >= 20 && resultadoCal <= 49) {
+      resultadoCal = resultadoCal * 20
+    }
+    else if (resultadoCal >= 50 && resultadoCal <= 99) {
+      resultadoCal = resultadoCal * 15
+    }
+    else if (resultadoCal >= 100 && resultadoCal <= 499) {
+      resultadoCal = resultadoCal * 12
+    }
+    else if (resultadoCal >= 500 && resultadoCal <= 999) {
+      resultadoCal = resultadoCal * 10
+    }
+    else if (resultadoCal >= 1000 && resultadoCal <= 3000) {
+      resultadoCal = resultadoCal * 8
+    }
 
-  2304
-  560
-  0.2430555555555556
+    setSubTotal(resultadoCal)
+  }
+
+
   const operaciones = {
     DTF: calcularDTF,
     Sublimación: calcularSublimacion,
@@ -206,7 +230,8 @@ function App() {
     Acrílico: calcularAcrílico,
     Banner: calcularBanner,
     Vinil: calcularVinil,
-    Calandra: calcularCalandra
+    Calandra: calcularCalandra,
+    Lapiceros: calcularLapiceros
 
   };
 
@@ -218,7 +243,11 @@ function App() {
     if (ancho != 0 && alto != 0) {
       const funcion = operaciones[tipoImpresion] || (() => alert("Operación no definida"));
       return funcion(ancho, alto, colorAcrilico[color], grosorAcrilico[grosor]);
-    } else {
+    } else if (cantidad != 0 && tipoImpresion == "Lapiceros") {
+
+      return calcularLapiceros()
+    }
+    else {
       alert("Campos Vacío")
     }
   }
@@ -244,6 +273,7 @@ function App() {
         <option value="Acrílico">Acrílico</option>
         <option value="Banner">Banner</option>
         <option value="Vinil">Vinil</option>
+        <option value="Lapiceros">Lapiceros</option>
       </select>
       <div>
         <div>
