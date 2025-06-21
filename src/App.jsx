@@ -13,7 +13,7 @@ function App() {
   const [tipoImpresion, setTipoImpresion] = useState("DTF")
 
   const preciosBase = {
-    precioDTF: 400,
+    precioDTF: 375,
     precioSublimación: 240,
     precioUVDTF: 720,
     precioCalandra: 300
@@ -81,7 +81,7 @@ function App() {
       resultadoCal = 200
     }
     else if (resultadoCal > 396) {
-      resultadoCal = redondearA5(resultadoCal * 0.5050505050505051)
+      resultadoCal = redondearA5(resultadoCal * 0.47348484848)
     }
     setSubTotal(resultadoCal)
   }
@@ -215,7 +215,7 @@ function App() {
       resultadoCal = resultadoCal * 10
     }
     else if (resultadoCal >= 1000 && resultadoCal <= 3000) {
-      resultadoCal = resultadoCal * 8
+      resultadoCal = resultadoCal * 9
     }
 
     setSubTotal(resultadoCal)
@@ -240,7 +240,10 @@ function App() {
 
   function ejecutarOperacion() {
     // Obtiene la función del objeto y la ejecuta
-    if (ancho != 0 && alto != 0) {
+    if ( ancho != 0 &&
+    alto != 0 &&
+    colorAcrilico[color] !== undefined &&
+    grosorAcrilico[grosor] !== undefined) {
       const funcion = operaciones[tipoImpresion] || (() => alert("Operación no definida"));
       return funcion(ancho, alto, colorAcrilico[color], grosorAcrilico[grosor]);
     } else if (cantidad != 0 && tipoImpresion == "Lapiceros") {
@@ -306,7 +309,7 @@ function App() {
 
 
           <select name="" id="" onChange={handlerGrosor} >
-            <option value="3mn">3mm</option>
+            <option value="3mm">3mm</option>
             <option value="4.5mm">4.5mm</option>
             <option value="6mm">6mm</option>
           </select>
